@@ -35,3 +35,6 @@ async def index_document(
     # Logic to index the document
     logger.info(f"Indexing document {path} in collection {collection}")
     return {"status": "Document indexing started", "document_id": str(uuid.uuid4())}
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8080)
