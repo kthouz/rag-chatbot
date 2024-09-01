@@ -20,7 +20,7 @@ async def ping():
     return {"ping": "pong", "timestamp": datetime.datetime.now()}
 
 @app.post("/document", tags=["Document"])
-def index_document(
+async def index_document(
     background_tasks: BackgroundTasks, 
     path: str = Query(..., title="Path to the document", description="Path to the document to be indexed", example="/path/to/document"), 
     collection: str = Query(..., title="Collection", description="Collection to which the document belongs", example="collection1")
@@ -35,7 +35,3 @@ def index_document(
     # Logic to index the document
     logger.info(f"Indexing document {path} in collection {collection}")
     return {"status": "Document indexing started", "document_id": str(uuid.uuid4())}
-
-if __name__ == "__main__":
-    
-    uvicorn.run(app, host="0.0.0.0", port=8080)
