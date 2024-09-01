@@ -10,7 +10,7 @@ logger.setLevel(logging.INFO)
 
 app = FastAPI()
 
-@app.get("/ping", tags=["Internal"])
+@app.get("/health", tags=["Internal"])
 async def ping():
     """
     Ping the server
