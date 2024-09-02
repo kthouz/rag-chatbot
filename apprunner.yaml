@@ -1,13 +1,16 @@
 version: 1.0
-runtime: python3
+runtime: python311
 build:
   commands:
-    - pip install -r requirements.txt
+    build:
+      - pip3 install -r requirements
+  env:
+    - name: DJANGO_SETTINGS_MODULE
+      value: "biodb.settings.aws"
 run:
   runtime-version: 3.11
-  command: uvicorn app:app --host 0.0.0.0 --port 8080
+  pre-run:
+    - pip3 install  -r requirements.txt
+  command: uvicorn app.app --host 0.0.0. --port 8080
   network:
     port: 8080
-  env:
-    - name: PYTHONUNBUFFERED
-      value: "1"
